@@ -76,3 +76,14 @@ TEST_CASE("Correct hashes (float, prec=-3)", "[hash]") {
 TEST_CASE("Correct hashes (float, prec=-4)", "[hash]") {
     check_hashes<float>(-4, 400);
 }
+
+TEST_CASE("Lookup", "[map]") {
+    fuzzymap<double, int> map(0.25);
+
+    map[0.1] = 1;
+    map[0.6] = 2;
+    REQUIRE(map[0.1] == 1);
+    REQUIRE(map[0.2] == 1);
+    REQUIRE(map[0.6] == 2);
+    REQUIRE(map[0.7] == 2);
+}
